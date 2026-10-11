@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slow Day Cafe — Matcha &amp; Slow Living · Demo</title>
+<meta name="description" content="Slow Day Cafe demonstration website concept by TablePilot Studio. Sample matcha cakes, same-day delivery and order flow.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F6F1E7;
+  --cream-2:#EFE7D8;
+  --ink:#3A322B;
+  --ink-2:#55493F;
+  --matcha:#7C9A63;
+  --matcha-d:#5F7B4A;
+  --brown:#8A6F52;
+  --line:rgba(58,50,43,.14);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Manrope','Segoe UI',system-ui,sans-serif;
+  --shadow:0 24px 48px rgba(58,50,43,.16);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+section{padding:96px 0}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--matcha-d)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.18;letter-spacing:.01em}
+h2{font-size:clamp(28px,3.6vw,42px);margin:14px 0 16px}
+.sec-head{max-width:660px;margin-bottom:46px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.sec-head p{color:#7A6F62;font-size:15.5px}
+
+/* ---------- nav ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(246,241,231,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-family:var(--serif);font-size:21px;font-weight:700;letter-spacing:.14em;color:var(--ink);display:flex;align-items:center;gap:10px}
+.brand .flag{width:14px;height:18px;background:linear-gradient(135deg,var(--matcha) 0%,var(--matcha-d) 100%);clip-path:polygon(0 0,100% 0,100% 78%,50% 100%,0 78%);display:inline-block}
+.brand small{font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.32em;color:var(--matcha-d);text-transform:uppercase;display:block;margin-top:1px}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+.nav-links a{font-size:13px;font-weight:600;letter-spacing:.05em;color:var(--ink-2);padding:6px 0;position:relative;transition:color .25s}
+.nav-links a:hover{color:var(--matcha-d)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--matcha);transition:width .3s}
+.nav-links a:hover::after{width:100%}
+.order-btn{background:var(--matcha-d);color:#fff;font-weight:700;font-size:13px;letter-spacing:.05em;padding:11px 22px;border-radius:999px;border:none;transition:all .25s}
+.order-btn:hover{background:var(--matcha);transform:translateY(-1px)}
+.cart-btn{position:relative;background:none;border:none;color:var(--ink);font-size:20px;padding:8px;transition:transform .2s}
+.cart-btn:hover{transform:scale(1.08)}
+.cart-count{position:absolute;top:-2px;right:-6px;background:var(--matcha-d);color:#fff;font-size:10px;font-weight:700;min-width:17px;height:17px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.menu-btn{display:none;background:none;border:none;color:var(--ink);font-size:23px;padding:6px}
+@media (max-width:920px){
+  .nav-links{position:fixed;inset:0;top:72px;background:var(--cream);flex-direction:column;align-items:flex-start;gap:4px;padding:26px 30px;transform:translateX(100%);transition:transform .38s ease;z-index:98;overflow-y:auto}
+  .nav-links.open{transform:none}
+  .nav-links li{width:100%}
+  .nav-links a{font-size:16px;display:block;padding:13px 0;width:100%;border-bottom:1px solid var(--line)}
+  .nav-links .order-btn{margin-top:18px;width:100%;text-align:center}
+  .menu-btn{display:inline-flex}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding-top:72px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:0;align-items:stretch;min-height:72vh}
+.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:70px 28px 70px 0}
+.hero h1{font-size:clamp(36px,5.6vw,64px);font-weight:700;margin:16px 0 20px}
+.hero h1 em{font-style:italic;color:var(--matcha-d)}
+.hero p{color:#7A6F62;font-size:16px;max-width:480px}
+.hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.btn-solid{background:var(--matcha-d);color:#fff;font-weight:700;font-size:14px;letter-spacing:.05em;padding:15px 30px;border-radius:999px;border:none;transition:all .3s}
+.btn-solid:hover{background:var(--matcha);transform:translateY(-2px);box-shadow:0 12px 26px rgba(95,123,74,.3)}
+.btn-line{background:transparent;color:var(--ink);font-weight:600;font-size:14px;letter-spacing:.05em;padding:15px 30px;border-radius:999px;border:1px solid var(--brown);transition:all .3s}
+.btn-line:hover{border-color:var(--matcha-d);color:var(--matcha-d)}
+.hero-img{position:relative;overflow:hidden;border-radius:6px 60px 6px 6px}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+.hero-badge{position:absolute;top:18px;left:18px;background:rgba(255,255,255,.94);border-radius:999px;padding:9px 16px;font-size:12px;font-weight:700;color:var(--matcha-d);letter-spacing:.08em;box-shadow:var(--shadow);display:flex;align-items:center;gap:8px}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--matcha);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-copy{padding:56px 0 30px}
+  .hero-img{min-height:320px}
+}
+
+/* ---------- flavour strip ---------- */
+.flavours{background:var(--cream-2)}
+.f-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.f-item{position:relative;aspect-ratio:1/1;overflow:hidden;border-radius:6px 26px 6px 6px;cursor:pointer;border:none;padding:0}
+.f-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.f-item:hover img{transform:scale(1.07)}
+.f-item span{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(58,50,43,.82));color:#F6F1E7;padding:34px 14px 12px;font-family:var(--serif);font-style:italic;font-size:15.5px;letter-spacing:.02em}
+.f-item .tiny{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.92);color:var(--matcha-d);font-size:9.5px;font-weight:700;letter-spacing:.16em;padding:4px 9px;border-radius:999px}
+@media (max-width:900px){.f-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- celebrate ---------- */
+.celebrate{position:relative;color:#F6F1E7;background:var(--ink)}
+.celebrate .sec-head p{color:#B9AB99}
+.celebrate-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.celebrate-img{position:relative}
+.celebrate-img img{border-radius:6px 50px 6px 6px;box-shadow:0 30px 70px rgba(0,0,0,.4)}
+.celebrate-copy h2{color:#F6F1E7}
+.celebrate-copy .kicker{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--matcha);margin-bottom:14px}
+.celebrate-list{list-style:none;margin:22px 0 30px;display:grid;gap:12px}
+.celebrate-list li{display:flex;gap:12px;align-items:center;font-size:15px;color:#E4DACA}
+.celebrate-list li::before{content:"";width:8px;height:8px;background:var(--matcha);clip-path:polygon(0 0,100% 0,100% 78%,50% 100%,0 78%);flex-shrink:0}
+@media (max-width:900px){.celebrate-grid{grid-template-columns:1fr;gap:40px}}
+
+/* ---------- matcha hero strip ---------- */
+.matcha-strip{background:linear-gradient(180deg,#EAF0E2 0%,#DCE6CF 100%);border-block:1px solid var(--line)}
+.strip-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.strip-copy h2{color:var(--ink)}
+.strip-copy .big{font-family:var(--serif);font-style:italic;font-size:clamp(22px,3vw,32px);color:var(--matcha-d);margin:10px 0 6px;line-height:1.3}
+.strip-img img{border-radius:6px 40px 6px 6px;box-shadow:var(--shadow)}
+@media (max-width:900px){.strip-grid{grid-template-columns:1fr}}
+
+/* ---------- products ---------- */
+.prod-sec{background:#FFFDF8}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px}
+.tab{background:var(--cream-2);border:1px solid var(--line);color:var(--ink-2);padding:11px 22px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.06em;transition:all .25s}
+.tab:hover{border-color:var(--matcha);color:var(--matcha-d)}
+.tab.active{background:var(--matcha-d);border-color:var(--matcha-d);color:#fff}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.prod{background:#fff;border:1px solid var(--line);border-radius:6px 26px 6px 6px;overflow:hidden;transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.prod:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.prod-img{position:relative;aspect-ratio:1/1;overflow:hidden;background:#111}
+.prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.prod:hover .prod-img img{transform:scale(1.05)}
+.tag{position:absolute;top:12px;left:12px;font-size:9.5px;font-weight:700;letter-spacing:.14em;padding:5px 10px;border-radius:999px;text-transform:uppercase}
+.tag.same{background:var(--matcha);color:#fff}
+.tag.sold{background:#9A9A94;color:#fff}
+.tag.mto{background:var(--brown);color:#fff}
+.prod-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.prod-body h3{font-size:17.5px;color:var(--ink);line-height:1.25}
+.prod-body .cn{font-size:12.5px;color:#9A9084;margin:3px 0 10px}
+.prod-price{display:flex;align-items:baseline;gap:8px;margin-bottom:14px}
+.prod-price .demo{font-size:9.5px;font-weight:700;letter-spacing:.12em;color:#B0A89B;text-transform:uppercase}
+.prod-price b{font-family:var(--serif);font-size:19px;color:var(--matcha-d)}
+.prod-price small{font-size:11px;color:#B0A89B}
+.add-btn{margin-top:auto;background:var(--cream-2);color:var(--ink);font-weight:700;font-size:12.5px;letter-spacing:.04em;padding:11px;border-radius:999px;border:1px solid var(--line);transition:all .25s;width:100%}
+.add-btn:hover{background:var(--matcha-d);color:#fff;border-color:var(--matcha-d)}
+.add-btn:disabled{background:#EFECE6;color:#B9B2A6;cursor:not-allowed;border-color:transparent}
+.prod.hidden{display:none}
+.view-all{display:block;margin:42px auto 0;text-align:center;background:none;border:none;border-bottom:2px solid var(--matcha);color:var(--matcha-d);font-weight:700;font-size:14px;letter-spacing:.06em;padding:6px 4px;transition:opacity .25s}
+.view-all:hover{opacity:.7}
+@media (max-width:1000px){.prod-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.prod-grid{grid-template-columns:1fr}}
+
+/* ---------- story / about ---------- */
+.about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+.about-img img{border-radius:6px 50px 6px 6px;box-shadow:var(--shadow)}
+.about-copy .quote{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--ink-2);border-left:3px solid var(--matcha);padding-left:18px;margin:20px 0}
+@media (max-width:900px){.about-grid{grid-template-columns:1fr}}
+
+/* ---------- cart drawer ---------- */
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,100vw);background:#FFFDF8;z-index:150;transform:translateX(105%);transition:transform .4s cubic-bezier(.22,.61,.36,1);box-shadow:-20px 0 60px rgba(58,50,43,.2);display:flex;flex-direction:column}
+.cart-drawer.open{transform:none}
+.cd-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--line)}
+.cd-head h3{font-size:21px}
+.cd-close{background:none;border:none;font-size:26px;color:var(--ink);line-height:1}
+.cd-body{flex:1;overflow-y:auto;padding:18px 24px}
+.cd-empty{text-align:center;color:#9A9084;padding:60px 0;font-size:14px}
+.cd-item{display:grid;grid-template-columns:64px 1fr auto;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);align-items:center}
+.cd-item img{width:64px;height:64px;border-radius:12px;object-fit:cover}
+.cd-item h4{font-family:var(--serif);font-size:15.5px;font-weight:600}
+.cd-item .cn{font-size:11.5px;color:#9A9084}
+.cd-item .line2{display:flex;align-items:center;gap:10px;margin-top:8px}
+.qty{display:flex;align-items:center;gap:2px;background:var(--cream-2);border-radius:999px;padding:2px}
+.qty button{width:26px;height:26px;border:none;background:none;font-size:15px;color:var(--ink);border-radius:50%}
+.qty button:hover{background:rgba(95,123,74,.15);color:var(--matcha-d)}
+.qty span{min-width:26px;text-align:center;font-size:13px;font-weight:700}
+.cd-item .price{font-family:var(--serif);font-size:16px;color:var(--matcha-d);font-weight:600;white-space:nowrap}
+.cd-item .rm{background:none;border:none;color:#B9B2A6;font-size:15px;line-height:1;margin-left:10px}
+.cd-item .rm:hover{color:#C4563F}
+.cd-foot{border-top:1px solid var(--line);padding:18px 24px 24px;background:#FFFDF8}
+.cd-total{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+.cd-total span{font-size:13px;font-weight:600;color:#7A6F62;letter-spacing:.04em}
+.cd-total b{font-family:var(--serif);font-size:26px;color:var(--matcha-d)}
+.cd-foot .btn-solid{width:100%;text-align:center}
+.cd-note{font-size:11px;color:#B0A89B;text-align:center;margin-top:12px}
+.overlay{position:fixed;inset:0;background:rgba(58,50,43,.45);z-index:140;opacity:0;visibility:hidden;transition:all .3s}
+.overlay.show{opacity:1;visibility:visible}
+
+/* ---------- checkout ---------- */
+.checkout-sec{display:none}
+.checkout-sec.active{display:block}
+.checkout-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
+form{background:#fff;border:1px solid var(--line);border-radius:6px 30px 6px 6px;padding:34px;box-shadow:var(--shadow)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.f-field{margin-bottom:16px}
+.f-field.full{grid-column:1/-1}
+label{display:block;font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#7A6F62;margin-bottom:7px}
+label b{color:var(--matcha-d)}
+input,select,textarea{width:100%;padding:12px 14px;border:1px solid rgba(58,50,43,.2);border-radius:10px;font-family:inherit;font-size:14px;color:var(--ink);background:#FAF7F0;transition:border .25s,box-shadow .25s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--matcha-d);box-shadow:0 0 0 3px rgba(95,123,74,.15);background:#fff}
+textarea{resize:vertical;min-height:80px}
+.f-error{display:none;color:#B24A3B;font-size:12px;margin-top:6px;font-weight:600}
+.f-field.bad input,.f-field.bad select,.f-field.bad textarea{border-color:#C4563F}
+.f-field.bad .f-error{display:block}
+.radio-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.radio-row label{display:flex;align-items:center;gap:8px;border:1px solid var(--line);padding:12px 16px;border-radius:12px;cursor:pointer;font-size:13.5px;letter-spacing:.02em;text-transform:none;color:var(--ink);margin:0;transition:all .2s;font-weight:600}
+.radio-row label.sel{border-color:var(--matcha-d);background:rgba(95,123,74,.08)}
+.radio-row input{display:none}
+.submit-btn{width:100%;background:var(--matcha-d);color:#fff;font-weight:700;font-size:14px;letter-spacing:.07em;padding:15px;border-radius:12px;border:none;transition:all .3s;margin-top:4px}
+.submit-btn:hover{background:var(--matcha);transform:translateY(-2px)}
+.demo-note{font-size:11.5px;color:#9A9084;margin-top:14px;text-align:center}
+.order-summary{background:#fff;border:1px solid var(--line);border-radius:6px 30px 6px 6px;padding:28px;box-shadow:var(--shadow)}
+.order-summary h3{font-size:19px;margin-bottom:16px}
+.os-row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.os-row b{font-family:var(--serif);font-size:15px}
+.os-total{display:flex;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:2px solid var(--matcha-d)}
+.os-total span{font-weight:700}
+.os-total b{font-family:var(--serif);font-size:24px;color:var(--matcha-d)}
+.confirm{display:none;text-align:center;padding:44px 26px}
+.confirm.show{display:block}
+.confirm .ok{font-family:var(--serif);font-size:52px;color:var(--matcha-d);line-height:1}
+.confirm h3{font-size:26px;margin:14px 0 8px}
+.confirm .ref{display:inline-block;background:var(--cream);border:1px dashed var(--matcha-d);padding:11px 22px;border-radius:12px;font-family:var(--serif);font-size:20px;letter-spacing:.1em;color:var(--matcha-d);margin:16px 0;font-weight:700}
+.back-btn{margin-top:14px}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:#E4DACA;padding:64px 0 0}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:44px;padding-bottom:48px}
+.foot-grid h4{font-family:var(--serif);font-size:16px;color:#F6F1E7;margin-bottom:14px}
+.foot-grid p,.foot-grid a{font-size:13.5px;color:#B9AB99;display:block}
+.foot-grid a{padding:5px 0;transition:color .25s}
+.foot-grid a:hover{color:var(--matcha)}
+.foot-brand{font-family:var(--serif);font-size:26px;font-weight:700;letter-spacing:.14em;color:#F6F1E7;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.foot-brand .flag{width:13px;height:17px;background:var(--matcha);clip-path:polygon(0 0,100% 0,100% 78%,50% 100%,0 78%);display:inline-block}
+.demo-banner{border:1px solid rgba(124,154,99,.4);background:rgba(124,154,99,.1);border-radius:10px;padding:13px 16px;font-size:12.5px;color:#C4D3AE;line-height:1.7;margin-top:16px}
+.maker{background:#2C2620;color:#A99D8D;text-align:center;font-size:12px;letter-spacing:.06em;padding:17px 0}
+.maker b{color:var(--matcha);font-weight:700}
+
+@media (max-width:960px){
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .checkout-grid{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  section{padding:72px 0}
+  .wrap{padding:0 20px}
+  .f-row{grid-template-columns:1fr}
+  form{padding:24px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header>
+  <div class="wrap nav">
+    <a href="#home" class="brand"><span class="flag"></span>SLOW DAY<small>Cafe · Demo</small></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav aria-label="Main navigation">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#flavours">Flavours</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#celebrate">Celebrate</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><button class="cart-btn" id="cartBtnTop" aria-label="Open cart"><span>🛒</span><span class="cart-count" id="cartCountTop">0</span></button></li>
+        <li><button class="order-btn" onclick="location.hash='#products'">Order Now</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Matcha · Slow Living · Demo Concept</span>
+        <h1>Take it <em>slow</em>,<br>taste the matcha.</h1>
+        <p>Handcrafted matcha cakes, same-day slices and celebration cakes — freshly delivered to your doorstep. This is a demonstration website concept; all products and prices are illustrative.</p>
+        <div class="hero-cta">
+          <button class="btn-solid" onclick="location.hash='#products'">Order Now</button>
+          <button class="btn-line" onclick="location.hash='#flavours'">Explore Flavours</button>
+        </div>
+      </div>
+      <div class="hero-img">
+        <div class="hero-badge"><span class="dot"></span>Same Day · Demo</div>
+        <img src="assets/hero.webp" alt="Six assorted matcha cake slices with small flags" fetchpriority="high">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Flavours ===== -->
+<section class="flavours" id="flavours">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Signature Flavours</span>
+      <h2>Seven ways to slow down</h2>
+      <p>Sample flavour line-up for this demo concept — Matcha, Hojicha, Pistachio, Dubai Chocolate and more.</p>
+    </div>
+    <div class="f-grid">
+      <button class="f-item"><span class="tiny">Matcha</span><img src="assets/matcha.webp" alt="Matcha nama gateau slice" loading="lazy"><span>Matcha Nama</span></button>
+      <button class="f-item"><span class="tiny">Pistachio</span><img src="assets/pistachio.webp" alt="Pistachio matcha slice" loading="lazy"><span>Genmaicha + Pistachio</span></button>
+      <button class="f-item"><span class="tiny">Chocolate</span><img src="assets/dubai.webp" alt="Dubai chocolate slice" loading="lazy"><span>Dubai Chocolate</span></button>
+      <button class="f-item"><span class="tiny">Hojicha</span><img src="assets/hojicha.webp" alt="Hojicha slice" loading="lazy"><span>Hojicha</span></button>
+      <button class="f-item"><span class="tiny">Earl Grey</span><img src="assets/cake-earl.webp" alt="Lychee earl grey cake" loading="lazy"><span>Lychee Earl Grey</span></button>
+      <button class="f-item"><span class="tiny">Berries</span><img src="assets/cake-berry.webp" alt="Pistachio blush cake" loading="lazy"><span>Pistachio Blush</span></button>
+      <button class="f-item"><span class="tiny">Cookies</span><img src="assets/cookies.webp" alt="Cookies in a jar" loading="lazy"><span>Cookies Collection</span></button>
+      <button class="f-item"><span class="tiny">Latte</span><img src="assets/latte.webp" alt="Matcha latte" loading="lazy"><span>Matcha Latte</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Products (order flow) ===== -->
+<section class="prod-sec" id="products">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Order · Demo Prices in RM</span>
+      <h2>Today's menu</h2>
+      <p>All products, descriptions and prices below are illustrative demo content. Add items to the demo cart to try the full order flow.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Product categories">
+      <button class="tab active" data-cat="slices" role="tab">Same Day Slices</button>
+      <button class="tab" data-cat="cakes" role="tab">Celebration Cakes</button>
+      <button class="tab" data-cat="gift" role="tab">Gift Box</button>
+    </div>
+    <div class="prod-grid" id="prodGrid">
+
+      <!-- Same Day Slices -->
+      <article class="prod" data-cat="slices" data-id="matcha-slice" data-name="Matcha Nama Gateau" data-cn="抹茶重乳酪 · Slice" data-price="28" data-img="assets/matcha.webp">
+        <div class="prod-img"><img src="assets/matcha.webp" alt="Matcha nama gateau slice" loading="lazy"><span class="tag same">Same Day</span></div>
+        <div class="prod-body">
+          <h3>Matcha Nama Gateau</h3><div class="cn">抹茶重乳酪 · Slice</div>
+          <div class="prod-price"><span class="demo">Demo</span><b>RM 28.00</b></div>
+          <button class="add-btn" data-add>Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="prod" data-cat="slices" data-id="dubai-slice" data-name="Dubai Chocolate" data-cn="迪拜巧克力 · Slice" data-price="28" data-img="assets/dubai.webp">
+        <div class="prod-img"><img src="assets/dubai.webp" alt="Dubai chocolate slice" loading="lazy"><span class="tag same">Same Day</span></div>
+        <div class="prod-body">
+          <h3>Dubai Chocolate</h3><div class="cn">迪拜巧克力 · Slice</div>
+          <div class="prod-price"><span class="demo">Demo</span><b>RM 28.00</b></div>
+          <button class="add-btn" data-add>Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="prod" data-cat="slices" data-id="pistachio-slice" data-name="Pistachio Matcha" data-cn="今日份开心 · Slice" data-price="28" data-img="assets/pistachio.webp">
+        <div class="prod-img"><img src="assets/pistachio.webp" alt="Pistachio matcha slice" loading="lazy"><span class="tag same">Same Day</span></div>
+        <div class="prod-body">
+          <h3>Pistachio Matcha</h3><div class="cn">今日份开心 · Slice</div>
+          <div class="prod-price"><span class="demo">Demo</span><b>RM 28.00</b></div>
+          <button class="add-btn" data-add>Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="prod" data-cat="slices" data-id="hojicha-slice" data-name="Hojicha Nama Gateau" data-cn="焙茶重乳酪 · Slice" data-price="28" data-img="assets/hojicha.webp">
+        <div class="prod-img"><img src="assets/hojicha.webp" alt="Hojicha slice" loading="lazy"><span class="tag same">Same Day</span></div>
+        <div class="prod-body">
+          <h3>Hojicha Nama Gateau</h3><div class="cn">焙茶重乳酪 · Slice</div>
+          <div class="prod-price"><span class="demo">Demo</span><b>RM 28.00</b></div>
+          <button class="add-btn" data-add>Add to Cart</button>
+        </div>
+      </article>
+
+      <!-- Celebration Cakes -->
+      <article class="prod" data-cat="cakes" data-id="berry-cake" data-name="Pistachio Blush" data-cn="树莓开心果 · Make to Order" data-price="145" data-img="assets/cake-berry.webp">
+        <div class="prod-img"><img src="assets/cake-berry.webp" alt="Pistachio blush celebration cake" loading="lazy"><span class="tag mto">Make To Order</span></div>
+        <div class="prod-body">
+          <h3>Pistachio Blush</h3><div class="cn">树莓开心果 · Whole Cake</div>
+          <div class="prod-price"><span class="demo">Demo</span><b>RM 145.00</b><small>from</small></div>
+          <button class="add-btn" data-add>Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="prod" data-cat="cakes" data-id="earl-cake" data-name="Lychee Earl Grey" data-cn="荔枝伯爵红茶 · Make to Order" data-price="115" data-img="assets/cake-earl.webp">
+        <div class="prod-img"><img src="assets/cake-earl.webp" alt="Lychee earl grey cake" loading="lazy"><span class="tag mto">Make To Order</span></div>
+        <div class="prod-body">
+          <h3>Lychee Earl Grey</h3><div class="cn">荔枝伯爵红茶 · Whole Cake</div>
+          <div class="prod-price"><span class="demo">Demo</span><b>RM 115.00</b></div>
+          <button class="add-btn" data-add>Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="prod" data-cat="cakes" data-id="mystery-cake" data-name="The Mystery Pair" data-cn="惊喜双拼 · Make to Order" data-price="145" data-img="assets/matcha.webp">
+        <div class="prod-img"><img src="assets/matcha.webp" alt="Mystery pair cake" loading="lazy"><span class="tag mto">Make To Order</span></div>
+        <div class="prod-body">
+          <h3>The Mystery Pair</h3><div class="cn">惊喜双拼 · Whole Cake</div>
+          <div class="prod-price"><span class="demo">Demo</span><b>RM 145.00</b></div>
+          <button class="add-btn" data-add>Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="prod" data-cat="cakes" data-id="rum-cake" data-name="Rum Cheese Cake" data-cn="酒鬼芝士 · Make to Order" data-price="125" data-img="assets/cake-berry.webp">
+        <div class="prod-img"><img src="assets/cake-berry.webp" alt="Rum cheese cake" loading="lazy"><span class="tag mto">Make To Order</span></div>
+        <div class="prod-body">
+          <h3>Rum Cheese Cake</h3><div class="cn">酒鬼芝士 · Whole Cake</div>
+          <div class="prod-price"><span class="demo">Demo</span><b>RM 125.00</b><small>from</small></div>
+          <button class="add-btn" data-add>Add to Cart</button>
+        </div>
+      </article>
+
+      <!-- Gift Box -->
+      <article class="prod" data-cat="gift" data-id="cookies-jar" data-name="Cookies in a Jar" data-cn="罐装曲奇 · Gift" data-price="28" data-img="assets/cookies.webp">
+        <div class="prod-img"><img src="assets/cookies.webp" alt="Cookies in a jar" loading="lazy"><span class="tag sold">Sold Out</span></div>
+        <div class="prod-body">
+          <h3>Cookies in a Jar</h3><div class="cn">罐装曲奇 · Gift Box</div>
+          <div class="prod-price"><span class="demo">Demo</span><b>RM 28.00</b></div>
+          <button class="add-btn" data-add disabled>Sold Out</button>
+        </div>
+      </article>
+
+      <article class="prod" data-cat="gift" data-id="earthy-cookies" data-name="The Earthy Cookies" data-cn="大地系曲奇 · 6 pcs" data-price="38" data-img="assets/cookies.webp">
+        <div class="prod-img"><img src="assets/cookies.webp" alt="Earthy cookies gift box" loading="lazy"><span class="tag mto">Make To Order</span></div>
+        <div class="prod-body">
+          <h3>The Earthy Cookies</h3><div class="cn">大地系曲奇 · 6 Pieces</div>
+          <div class="prod-price"><span class="demo">Demo</span><b>RM 38.00</b></div>
+          <button class="add-btn" data-add>Add to Cart</button>
+        </div>
+      </article>
+
+    </div>
+    <button class="view-all" onclick="location.hash='#celebrate'">View celebration cakes ↓</button>
+  </div>
+</section>
+
+<!-- ===== Celebrate ===== -->
+<section class="celebrate" id="celebrate">
+  <div class="wrap">
+    <div class="celebrate-grid">
+      <div class="celebrate-img"><img src="assets/cake-berry.webp" alt="Celebration cake with berries" loading="lazy"></div>
+      <div class="celebrate-copy">
+        <span class="kicker">Celebrate Slow Moments</span>
+        <h2>Birthday cakes · Anniversary cakes · Custom messages</h2>
+        <p style="color:#B9AB99;font-size:15px">Whole cakes are made to order with custom message boards — a demo flow shown here.</p>
+        <ul class="celebrate-list">
+          <li>Custom message on a slow day flag</li>
+          <li>Choose from matcha, pistachio, earl grey &amp; more</li>
+          <li>Pick-up in Johor Bahru or demo delivery</li>
+        </ul>
+        <button class="btn-solid" onclick="location.hash='#products';activateTab('cakes')">Order Now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Matcha strip ===== -->
+<section class="matcha-strip">
+  <div class="wrap">
+    <div class="strip-grid">
+      <div class="strip-copy">
+        <span class="eyebrow">Matcha Studio</span>
+        <h2>The most “KAW” matcha you ever had</h2>
+        <div class="big">Every layer made of slow days.</div>
+        <p style="color:#7A6F62;font-size:15px;margin-top:12px">Ceremonial-grade matcha whisked to order, layered into nama gateaux and poured as lattes. Demo copy for this concept.</p>
+        <button class="btn-solid" style="margin-top:26px" onclick="location.hash='#products'">Order</button>
+      </div>
+      <div class="strip-img"><img src="assets/latte.webp" alt="Matcha latte with cookies" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Story ===== -->
+<section id="story">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-img"><img src="assets/interior.webp" alt="Cafe interior with cake display case" loading="lazy"></div>
+      <div class="about-copy">
+        <span class="eyebrow">Our Story</span>
+        <h2>A cafe that moves at your pace</h2>
+        <div class="quote">“We started with one matcha cake and a slow idea — that dessert should arrive the same day you crave it.”</div>
+        <p style="color:#7A6F62">This is a demonstration website concept built by TablePilot Studio to showcase an e-commerce bakery template: product catalogue, cart, checkout and delivery flow. All names, stories and prices are illustrative.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Checkout ===== -->
+<section class="checkout-sec" id="checkout">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Demo Checkout</span>
+      <h2>Complete your demo order</h2>
+      <p>Validate the fields below — no real order is sent anywhere.</p>
+    </div>
+    <div class="checkout-grid">
+      <form id="coForm" novalidate>
+        <div class="confirm" id="confirmBox">
+          <div class="ok">✓</div>
+          <h3>Demo order received</h3>
+          <p style="color:#7A6F62;font-size:14px">This is a demonstration — no real order was placed. Your sample reference:</p>
+          <div class="ref" id="confirmRef">SDC-000000</div>
+          <div class="order-summary" style="text-align:left;max-width:400px;margin:0 auto 20px;box-shadow:none">
+            <h3>Order summary</h3>
+            <div id="confirmSum"></div>
+          </div>
+          <button type="button" class="btn-solid back-btn" onclick="resetCheckout()">Back to Menu</button>
+        </div>
+        <div id="coBody">
+          <div class="f-row">
+            <div class="f-field"><label for="fName">Full name <b>*</b></label><input id="fName" type="text" autocomplete="name" placeholder="Jane Doe"><div class="f-error">Please enter your name.</div></div>
+            <div class="f-field"><label for="fEmail">Email <b>*</b></label><input id="fEmail" type="email" autocomplete="email" placeholder="jane@example.com"><div class="f-error">Please enter a valid email.</div></div>
+          </div>
+          <div class="f-row">
+            <div class="f-field"><label for="fPhone">Phone <b>*</b></label><input id="fPhone" type="tel" autocomplete="tel" placeholder="+60 12-000 0000"><div class="f-error">Please enter your phone.</div></div>
+            <div class="f-field"><label for="fSlot">Pick-up / Delivery <b>*</b></label>
+              <div class="radio-row">
+                <label id="lblPick" class="sel"><input type="radio" name="slot" value="Pick-up" checked>Pick-up</label>
+                <label id="lblDel"><input type="radio" name="slot" value="Delivery">Delivery</label>
+              </div>
+            </div>
+          </div>
+          <div class="f-row">
+            <div class="f-field"><label for="fDate">Date <b>*</b></label><input id="fDate" type="date"><div class="f-error">Please choose a date.</div></div>
+            <div class="f-field"><label for="fTime">Time <b>*</b></label><select id="fTime"><option value="">Select…</option><option>10:00</option><option>12:00</option><option>14:00</option><option>16:00</option><option>18:00</option><option>20:00</option></select><div class="f-error">Please choose a time.</div></div>
+          </div>
+          <div class="f-field full"><label for="fNotes">Notes</label><textarea id="fNotes" placeholder="Custom message, allergies, delivery address…"></textarea></div>
+          <button type="submit" class="submit-btn">Place Demo Order</button>
+          <p class="demo-note">Demonstration only — no payment, no real delivery, nothing is sent to any cafe.</p>
+        </div>
+      </form>
+      <div class="order-summary">
+        <h3>Your order</h3>
+        <div id="osItems"></div>
+        <div class="os-total"><span>Total</span><b id="osTotal">RM 0.00</b></div>
+        <button class="btn-line" style="width:100%;margin-top:18px" onclick="openCart()">Edit cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><span class="flag"></span>SLOW DAY</div>
+        <p style="font-size:13.5px;line-height:1.8">A demonstration cafe website concept inspired by slow living and matcha. Not affiliated with any real cafe.</p>
+        <div class="demo-banner">This is a fictional portfolio demo by TablePilot Studio. Sample products, prices, hours and delivery details are not verified business information.</div>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="#products" onclick="activateTab('slices')">Same Day Slices</a>
+        <a href="#products" onclick="activateTab('cakes')">Celebration Cakes</a>
+        <a href="#products" onclick="activateTab('gift')">Gift Box</a>
+        <a href="#checkout">Demo Checkout</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="#contact">hello@demo.com <span style="opacity:.6">· placeholder</span></a>
+        <a href="#contact">Johor Bahru, MY <span style="opacity:.6">· placeholder</span></a>
+        <a href="#contact">@slowdaycafe.demo <span style="opacity:.6">· placeholder</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="maker">Website concept by <b>TablePilot Studio</b> · Responsive HTML/CSS/JS · Demo order flow</div>
+</footer>
+
+<!-- ===== Cart drawer ===== -->
+<div class="overlay" id="overlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="cd-head"><h3>Your Basket</h3><button class="cd-close" id="cdClose" aria-label="Close cart">×</button></div>
+  <div class="cd-body" id="cdBody"></div>
+  <div class="cd-foot">
+    <div class="cd-total"><span>Subtotal</span><b id="cdTotal">RM 0.00</b></div>
+    <button class="btn-solid" id="coBtn">Proceed to Demo Checkout</button>
+    <p class="cd-note">Demo cart · saved in your browser · no real checkout</p>
+  </div>
+</aside>
+
+<script>
+/* ---------- nav / mobile ---------- */
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', open);
+});
+navLinks.querySelectorAll('a,button').forEach(el => el.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded','false');
+}));
+
+/* ---------- tabs ---------- */
+function activateTab(cat){
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.cat === cat));
+  document.querySelectorAll('.prod').forEach(p => p.classList.toggle('hidden', p.dataset.cat !== cat));
+  const grid = document.getElementById('prodGrid');
+  grid.scrollIntoView({behavior:'smooth', block:'start'});
+}
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => activateTab(t.dataset.cat)));
+
+/* ---------- cart ---------- */
+const CART_KEY = 'slowday_cart_demo';
+let cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+const drawer = document.getElementById('cartDrawer');
+const overlay = document.getElementById('overlay');
+const cdBody = document.getElementById('cdBody');
+const fmt = n => 'RM ' + n.toFixed(2);
+function saveCart(){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
+function totalCount(){ return cart.reduce((s,i)=>s+i.qty,0); }
+function totalPrice(){ return cart.reduce((s,i)=>s+i.qty*i.price,0); }
+function renderCart(){
+  const cnt = totalCount();
+  document.getElementById('cartCountTop').textContent = cnt;
+  document.getElementById('cdTotal').textContent = fmt(totalPrice());
+  if(!cart.length){
+    cdBody.innerHTML = '<div class="cd-empty">Your basket is empty.<br>Add a demo slice to try the flow.</div>';
+    return;
+  }
+  cdBody.innerHTML = cart.map((it,i) => `
+    <div class="cd-item">
+      <img src="${it.img}" alt="${it.name}">
+      <div>
+        <h4>${it.name}</h4><div class="cn">${it.cn}</div>
+        <div class="line2">
+          <div class="qty">
+            <button data-dec="${i}" aria-label="Decrease">−</button>
+            <span>${it.qty}</span>
+            <button data-inc="${i}" aria-label="Increase">+</button>
+          </div>
+          <span class="price">${fmt(it.price*it.qty)}</span>
+          <button class="rm" data-rm="${i}" aria-label="Remove">🗑</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function openCart(){ drawer.classList.add('open'); overlay.classList.add('show'); renderCart(); }
+function closeCart(){ drawer.classList.remove('open'); overlay.classList.remove('show'); }
+document.getElementById('cartBtnTop').addEventListener('click', openCart);
+document.getElementById('cdClose').addEventListener('click', closeCart);
+overlay.addEventListener('click', closeCart);
+document.querySelectorAll('[data-add]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const prod = btn.closest('.prod');
+    const id = prod.dataset.id;
+    const found = cart.find(i => i.id === id);
+    if(found){ found.qty++; } else {
+      cart.push({ id, name: prod.dataset.name, cn: prod.dataset.cn, price: parseFloat(prod.dataset.price), img: prod.dataset.img, qty: 1 });
+    }
+    saveCart(); renderCart();
+    const b = document.querySelector('.hero-badge');
+    if(b){ b.textContent = '✓ Added to demo cart'; setTimeout(()=>{ b.innerHTML = '<span class="dot"></span>Same Day · Demo'; }, 1400); }
+  });
+});
+cdBody.addEventListener('click', e => {
+  const inc = e.target.closest('[data-inc]');
+  const dec = e.target.closest('[data-dec]');
+  const rm = e.target.closest('[data-rm]');
+  if(inc){ cart[+inc.dataset.inc].qty++; }
+  else if(dec){ const i=+dec.dataset.dec; cart[i].qty--; if(cart[i].qty<=0) cart.splice(i,1); }
+  else if(rm){ cart.splice(+rm.dataset.rm,1); }
+  else return;
+  saveCart(); renderCart();
+});
+
+/* ---------- checkout ---------- */
+const coBtn = document.getElementById('coBtn');
+coBtn.addEventListener('click', () => {
+  if(!cart.length){ alert('Your demo basket is empty — add a slice first.'); openCart(); return; }
+  closeCart();
+  location.hash = '#checkout';
+  renderOrderSummary();
+});
+function renderOrderSummary(){
+  const os = document.getElementById('osItems');
+  os.innerHTML = cart.map(i => `<div class="os-row"><span>${i.name} × ${i.qty}</span><b>${fmt(i.price*i.qty)}</b></div>`).join('');
+  document.getElementById('osTotal').textContent = fmt(totalPrice());
+}
+document.querySelectorAll('input[name="slot"]').forEach(r => r.addEventListener('change', () => {
+  document.getElementById('lblPick').classList.toggle('sel', r.value === 'Pick-up');
+  document.getElementById('lblDel').classList.toggle('sel', r.value === 'Delivery');
+}));
+function mark(field, bad){
+  field.closest('.f-field').classList.toggle('bad', bad);
+  return !bad;
+}
+document.getElementById('coForm').addEventListener('submit', e => {
+  e.preventDefault();
+  if(!cart.length){ alert('Your basket is empty.'); return; }
+  let ok = true;
+  const name = document.getElementById('fName');
+  const email = document.getElementById('fEmail');
+  const phone = document.getElementById('fPhone');
+  const date = document.getElementById('fDate');
+  const time = document.getElementById('fTime');
+  ok = mark(name, name.value.trim().length < 2) && ok;
+  ok = mark(email, !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) && ok;
+  ok = mark(phone, phone.value.trim().length < 7) && ok;
+  ok = mark(date, !date.value) && ok;
+  ok = mark(time, !time.value) && ok;
+  if(!ok) return;
+  const slot = document.querySelector('input[name="slot"]:checked').value;
+  const ref = 'SDC-' + Math.random().toString(36).slice(2,8).toUpperCase();
+  document.getElementById('confirmRef').textContent = ref;
+  const d = new Date(date.value + 'T00:00:00');
+  const dstr = d.toLocaleDateString('en-GB', {weekday:'short', day:'numeric', month:'short', year:'numeric'});
+  document.getElementById('confirmSum').innerHTML =
+    '<div class="os-row"><span>Customer</span><b>' + name.value + '</b></div>' +
+    '<div class="os-row"><span>' + slot + '</span><b>' + dstr + ' · ' + time.value + '</b></div>' +
+    '<div class="os-row"><span>Items</span><b>' + cart.reduce((s,i)=>s+i.qty,0) + '</b></div>' +
+    '<div class="os-row"><span>Total</span><b>' + fmt(totalPrice()) + '</b></div>';
+  document.getElementById('coBody').style.display = 'none';
+  document.getElementById('confirmBox').classList.add('show');
+  document.getElementById('confirmBox').scrollIntoView({behavior:'smooth', block:'center'});
+});
+function resetCheckout(){
+  document.getElementById('coForm').reset();
+  document.querySelectorAll('.f-field').forEach(w => w.classList.remove('bad'));
+  document.getElementById('confirmBox').classList.remove('show');
+  document.getElementById('coBody').style.display = '';
+  location.hash = '#products';
+  activateTab('slices');
+}
+
+/* ---------- scrollspy ---------- */
+const spyIds = ['home','flavours','products','celebrate','story'];
+window.addEventListener('scroll', () => {
+  const y = window.scrollY + 110;
+  let cur = 'home';
+  spyIds.forEach(id => {
+    const el = document.getElementById(id);
+    if(el && el.offsetTop <= y) cur = id;
+  });
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach(a =>
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+}, {passive:true});
+
+renderCart();
+</script>
+</body>
+</html>
